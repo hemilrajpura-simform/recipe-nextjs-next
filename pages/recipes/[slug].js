@@ -20,7 +20,7 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
   }`;
 
 export default function OneRecipe({ data, preview }) {
-    console.log('data',data)
+    console.log('data', data)
     const [likes, setLikes] = useState(data?.recipe?.likes);
     let { data: recipe } = usePreviewSubscription(recipeQuery, {
         params: { slug: data.recipe?.slug.current },
@@ -36,14 +36,14 @@ export default function OneRecipe({ data, preview }) {
         const data = await res.json();
         setLikes(data.likes)
     };
-    recipe= recipe.recipe;
+    recipe = recipe.recipe;
     return (
         <article className="recipe">
             <h1>{recipe.name}</h1>
             <button onClick={addLike} className="like-button">
                 {likes} {"❤️"}
             </button>
-            <main className="content">  {recipe && <>
+            <main className="content">
                 <img src={urlFor(recipe.mainImage).url()} alt={recipe.name} />
                 <div className="breakdown">
                     <ul className="ingredients">
@@ -62,8 +62,7 @@ export default function OneRecipe({ data, preview }) {
                         blocks={recipe?.instructions}
                         value={recipe?.instructions}
                     />
-                </div> </>
-            }
+                </div>
             </main>
 
         </article>
