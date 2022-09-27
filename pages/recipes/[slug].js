@@ -33,10 +33,10 @@ export default function OneRecipe({ data, preview }) {
             body: JSON.stringify({ _id: recipe._id })
         }).catch((error) => console.log(error))
 
-        const data = await res.json();
+        const data = await res.json()
         setLikes(data.likes)
     };
-    recipe = recipe.recipe;
+    // recipe = recipe.recipe; 
     return (
         <article className="recipe">
             <h1>{recipe.name}</h1>
@@ -47,7 +47,7 @@ export default function OneRecipe({ data, preview }) {
                 <img src={urlFor(recipe.mainImage).url()} alt={recipe.name} />
                 <div className="breakdown">
                     <ul className="ingredients">
-                        {recipe?.ingredient?.map((ingredient) => (
+                        {recipe.ingredient?.map((ingredient) => (
                             <li className="ingredient" key={ingredient._key}>
                                 {ingredient?.wholeNumber}
                                 {ingredient?.fraction}
@@ -62,9 +62,8 @@ export default function OneRecipe({ data, preview }) {
                         blocks={recipe?.instructions}
                         value={recipe?.instructions}
                     />
-                </div>
-            </main>
-
+                </div> 
+            </main> 
         </article>
     )
 }
